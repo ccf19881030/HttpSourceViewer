@@ -1,2 +1,14 @@
-﻿  HttpSourceViewerDlg.cpp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : 对路径“f:\softdevelop\cplus\vcproject2013\httpsourceviewer\debug\httpsourceviewer.exe”的访问被拒绝。
+  stdafx.cpp
+  CRegExpATL.cpp
+  CRegExpContext.cpp
+  HttpSourceViewer.cpp
+  HttpSourceViewerDlg.cpp
+  RegExpBoost.cpp
+  Unknown compiler version - please run the configure tests and report the results
+  RegExpStrategyInterface.cpp
+  TabHtmlBody.cpp
+  TabHtmlGet.cpp
+  TabHtmlHead.cpp
+  正在生成代码...
   HttpSourceViewer.vcxproj -> F:\SoftDevelop\CPlus\VCProject2013\HttpSourceViewer\Debug\HttpSourceViewer.exe
