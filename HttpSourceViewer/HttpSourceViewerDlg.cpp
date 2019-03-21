@@ -71,6 +71,7 @@ BEGIN_MESSAGE_MAP(CHttpSourceViewerDlg, CDialogEx)
 //	ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &CHttpSourceViewerDlg::OnSelchangeTabMain)
 ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &CHttpSourceViewerDlg::OnTcnSelchangeTabMain)
 ON_BN_CLICKED(ID_BUTTON_GO, &CHttpSourceViewerDlg::OnBnClickedButtonGo)
+ON_COMMAND(ID_MAIN_GETMATCH, &CHttpSourceViewerDlg::OnMainGetmatch)
 END_MESSAGE_MAP()
 
 
@@ -294,4 +295,21 @@ bool CHttpSourceViewerDlg::HtmlRequestProgress(double progress)
 {
 	m_pThis->m_htmlReqProgress.SetPos( static_cast<int>(progress) );
 	return true;
+}
+
+void CHttpSourceViewerDlg::OnMainGetmatch()
+{
+	// TODO: 在此添加命令处理程序代码
+	CString temp;
+
+	for (vector<wstring>::iterator it = m_tabHtmlBody.m_vecMatch.begin(); it != m_tabHtmlBody.m_vecMatch.end(); ++it)
+	{
+		temp += (*it).c_str();
+		temp += L"\r\n";
+		// 下面的代码耦合性太高了，需要改进，可以通过从CTabHtmlBody给CHttpSourceViewerDlg主对话框发送消息来实现
+		/* CHttpSourceViewerDlg* pHttpSourceViewDlg = ((CHttpSourceViewerDlg*)AfxGetMainWnd());
+		pHttpSourceViewDlg->m_tabHtmlGet.m_htmlGetEdit.SetWindowTextW(temp);
+		*/
+		m_tabHtmlGet.m_htmlGetEdit.SetWindowTextW(temp);
+	}
 }

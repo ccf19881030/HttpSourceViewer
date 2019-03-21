@@ -58,4 +58,5 @@ public:
 public:
 	static bool HtmlRequestProgress(double progress);
 	static CHttpSourceViewerDlg* m_pThis;
+	afx_msg void OnMainGetmatch();
 };

@@ -7,7 +7,9 @@
 #include "afxdialogex.h"
 #include <iostream>
 //#include <boost/regex.hpp>
-#include "RegExpBoost.h"
+#include "CRegExpContext.h"
+
+#include "HttpSourceViewerDlg.h"
 
 // CTabHtmlBody 对话框
 
@@ -42,6 +44,7 @@ BEGIN_MESSAGE_MAP(CTabHtmlBody, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR_HTML_BODY, &CTabHtmlBody::OnBnClickedButtonClearHtmlBody)
 	ON_BN_CLICKED(IDC_BUTTON_COPY_HTML_BODY, &CTabHtmlBody::OnBnClickedButtonCopyHtmlBody)
 	ON_BN_CLICKED(IDC_BUTTON_SEARCH_TEXT, &CTabHtmlBody::OnBnClickedButtonSearchText)
+	ON_BN_CLICKED(IDC_BUTTON_GET_MATCH, &CTabHtmlBody::OnBnClickedButtonGetMatch)
 END_MESSAGE_MAP()
 
 
@@ -116,20 +119,30 @@ void CTabHtmlBody::FindTextInHtml()
 	CString htmlContent;
 	m_htmlBodyEdit.GetWindowTextW(htmlContent);
 
+	// 判断用户选择哪种表达式
+	CRegExpContext::REGEXP_RULE index = (CRegExpContext::REGEXP_RULE)m_RegStyleComboBox.GetItemData(m_RegStyleComboBox.GetCurSel());
+	CRegExpContext regExpContext(index);
+
 	// 正则表达式搜索
-	CRegExpBoost regBoost;
+	m_vecMatch.clear(); // 每一次搜索前清除结果数组
+	//CRegExpBoost regBoost;
 	std::wstring regExp = searchText.GetBuffer();
 	std::wstring searchContent = htmlContent.GetBuffer();
-	std::vector<wstring> vecMatch;
-	regBoost.RegExpMatch(regExp, searchContent, vecMatch);
+	//std::vector<wstring> vecMatch;
+	regExpContext.RegExpMatch(regExp, searchContent, m_vecMatch);
+
+	// 显示匹配的个数
+	size_t matchCount = m_vecMatch.size();
+	CString matchCountStr;
+	matchCountStr.Format(TEXT("%d"), matchCount);
+	m_matchNumEdit.SetWindowTextW(matchCountStr);
 
 	// 遍历所有匹配结果，然后在RichEdit里进行匹配内容的搜索和着色
-	for (vector<wstring>::iterator it = vecMatch.begin(); it != vecMatch.end(); ++it)
+	for (vector<wstring>::iterator it = m_vecMatch.begin(); it != m_vecMatch.end(); ++it)
 	{
 		CString testStr( (*it).c_str() );
 		// 在RichEdit文本中搜索需要查找的内容
-		SearchInHtmlContent(searchText);
-		//AfxMessageBox(testStr);
+		SearchInHtmlContent(testStr);
 	}
 }
 
@@ -299,8 +312,31 @@ void CTabHtmlBody::InitRegexComBox()
 {
 	int index = 0;
 	m_RegStyleComboBox.InsertString(index, TEXT("Boost"));
-	m_RegStyleComboBox.SetItemData(index++, 1);
+	m_RegStyleComboBox.SetItemData(index++, CRegExpContext::USE_BOOST_REGEXP);
 	m_RegStyleComboBox.InsertString(index, TEXT("ATL"));
-	m_RegStyleComboBox.SetItemData(index++, 2);
+	m_RegStyleComboBox.SetItemData(index++, CRegExpContext::USE_ATL_REGEXP);
 	m_RegStyleComboBox.SetCurSel(0);
+}
+
+
+void CTabHtmlBody::OnBnClickedButtonGetMatch()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	GetMatchRegExp();
+}
+
+//***********************************************
+//程序作者：ccf19881030 2019/03/21/03/21 19:36:22
+//函数功能：
+//参数说明：
+// 参数：
+// 返回值：
+//注意事项：
+//***********************************************
+// 提取搜索到的内容
+void CTabHtmlBody::GetMatchRegExp()
+{
+	// TODO: 在此处添加实现代码.
+	// 向主对话框发送消息，让其获取匹配的内容
+	AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_MAIN_GETMATCH, 0);
 }

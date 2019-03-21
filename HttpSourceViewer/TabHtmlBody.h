@@ -2,6 +2,12 @@
 #include "afxwin.h"
 #include "afxcmn.h"
 
+#include <string>
+#include <vector>
+
+using std::wstring;
+using std::vector;
+
 // CTabHtmlBody 对话框
 
 class CTabHtmlBody : public CDialogEx
@@ -46,4 +52,10 @@ public:
 	void SearchInHtmlContent(CString searchText);
 	// 初始化正则表达式下拉框
 	void InitRegexComBox();
+public:
+	std::vector<wstring> m_vecMatch;
+public:
+	afx_msg void OnBnClickedButtonGetMatch();
+	// 提取搜索到的内容
+	void GetMatchRegExp();
 };
