@@ -60,92 +60,86 @@ bool CRegExpATL::RegExpMatch(const wstring& regExp, const wstring& searchText, v
 		return false;
 	}
 	
-		CAtlREMatchContext<> mc;
-		const CAtlRegExp<>::RECHAR* pCon = searchText.c_str();
-		std::vector<wstring> record;
-		wchar_t *pSource = new wchar_t[searchText.size() + 1];
-		wchar_t *pSourceEnd = pSource + searchText.size();
-		if (pSource == NULL)
+	CAtlREMatchContext<> mc;
+	const CAtlRegExp<>::RECHAR* pCon = searchText.c_str();
+	wchar_t *pSource = new wchar_t[searchText.size() + 1];
+	wchar_t *pSourceEnd = pSource + searchText.size();
+	if (pSource == NULL)
+	{
+		return false;
+	}
+	wcscpy_s(pSource, searchText.size() + 1, searchText.c_str());
+	BOOL bSucceed = TRUE;
+	const wchar_t *pFrom = pSource;
+	const wchar_t *pTo = NULL;
+	while (bSucceed)
+	{
+		bSucceed = regex.Match(pFrom, &mc, &pTo);
+		if (bSucceed)
 		{
-			return false;
-		}
-		wcscpy_s(pSource, searchText.size() + 1, searchText.c_str());
-		BOOL bSucceed = TRUE;
-		const wchar_t *pFrom = pSource;
-		const wchar_t *pTo = NULL;
-		while (bSucceed)
-		{
-			bSucceed = regex.Match(pFrom, &mc, &pTo);
-			if (bSucceed)
+			const wchar_t *pStart = NULL;
+			const wchar_t *pEnd = NULL;
+			vector<wstring> tempMatch;
+			for (UINT nGroupIndex = 0; nGroupIndex < mc.m_uNumGroups; ++nGroupIndex)
 			{
-				const wchar_t *pStart = NULL;
-				const wchar_t *pEnd = NULL;
-				vector<wstring> tempMatch;
-				for (UINT nGroupIndex = 0; nGroupIndex < mc.m_uNumGroups; ++nGroupIndex)
+				mc.GetMatch(nGroupIndex, &pStart, &pEnd);
+				if (pStart != NULL && pEnd != NULL)
 				{
-					mc.GetMatch(nGroupIndex, &pStart, &pEnd);
-					if (pStart != NULL && pEnd != NULL)
-					{
-						wstring match(pStart, pEnd - pStart);
-						tempMatch.push_back(match);
-					}
-					else
-					{
-						break;
-					}
-				}
-				bool bAdd = true;
-					// Check whether this match already exists in the vector.
-					for (vector<wstring>::iterator it = results.begin(); it != results.end();)
-					{
-						bool bEqual = true;
-						for (vector<wstring>::iterator tempMatchIt = tempMatch.begin(); tempMatchIt != tempMatch.end(); tempMatchIt++, it++)
-						{
-							bool bGroupEqual = true;
-							if (true)
-							{
-								bGroupEqual = (wcscmp(it->c_str(), tempMatchIt->c_str()) == 0);
-							}
-							else
-							{
-								bGroupEqual = (_wcsicmp(it->c_str(), tempMatchIt->c_str()) == 0);
-							}
-							if (!bGroupEqual)
-							{
-								bEqual = false;
-							}
-						}
-						if (bEqual)
-						{
-							bAdd = false;
-							break;
-						}
-					}
-				if (bAdd)
-				{
-					for (vector<wstring>::iterator tempMatchIt = tempMatch.begin(); tempMatchIt != tempMatch.end(); tempMatchIt++)
-					{
-						results.push_back(*tempMatchIt);
-					}
-				}
-				if (pTo < pSourceEnd)
-				{
-					pFrom = pTo;
+					wstring match(pStart, pEnd - pStart);
+					tempMatch.push_back(match);
 				}
 				else
 				{
 					break;
 				}
 			}
-			else
+			bool bAdd = true;
+			// Check whether this match already exists in the vector.
+			for (vector<wstring>::iterator it = results.begin(); it != results.end();)
+			{
+				bool bEqual = true;
+				for (vector<wstring>::iterator tempMatchIt = tempMatch.begin(); tempMatchIt != tempMatch.end(); tempMatchIt++, it++)
+				{
+					bool bGroupEqual = true;
+					if (true)
+					{
+						bGroupEqual = (wcscmp(it->c_str(), tempMatchIt->c_str()) == 0);
+					} else
+					{
+						bGroupEqual = (_wcsicmp(it->c_str(), tempMatchIt->c_str()) == 0);
+					}
+					if (!bGroupEqual)
+					{
+							bEqual = false;
+					}
+				}
+				if (bEqual)
+				{
+					bAdd = false;
+					break;
+				}
+			}
+			if (bAdd)
+			{
+				for (vector<wstring>::iterator tempMatchIt = tempMatch.begin(); tempMatchIt != tempMatch.end(); tempMatchIt++)
+				{
+					results.push_back(*tempMatchIt);
+				}
+			}
+			if (pTo < pSourceEnd)
+			{
+				pFrom = pTo;
+			}  else
 			{
 				break;
 			}
+		} else
+		{
+			break;
 		}
+	}
 
-		delete[] pSource;
+	delete[] pSource;
 
-		//return true;
-
-	return results.size() != 0;
+	return true;
 }
