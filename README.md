@@ -1,41 +1,44 @@
 ## HttpSourceViewer
-±¾ÏîÄ¿À´Ô´ÓÚBiliBilÊÓÆµÍøÕ¾£¬[Visual C++ÍøÂçÏîÄ¿ÊµÕ½ÊÓÆµ½Ì³Ì](https://www.bilibili.com/video/av23724274/)£¬Ê®·Ö¸ĞĞ»[³õĞÄ²»ÍüÊÄÑÔ·â´æ](https://space.bilibili.com/22046211?spm_id_from=333.788.b_765f7570696e666f.2)µÄ·ÖÏí¡£
-×÷ÕßÊÇJhkdiyÀÏÊ¦£¬¿ÉÒÔ²Î¼ûËûµÄ[jhkdiyµÄCSDN²©¿Í](https://blog.csdn.net/jhkdiy)¡¢
-[jhkdiyµÄ²©¿ÍÔ°](https://www.cnblogs.com/jhkdiy/)¡¢
-[VCºÚ¿Í±à³ÌÊµÕ½ÊÓÆµ-ÆÆ½âÍø°ÉµçÓ°ÏÂÔØ](https://www.cnblogs.com/jhkdiy/p/3363708.html)
+æœ¬é¡¹ç›®æ¥æºäºBiliBilè§†é¢‘ç½‘ç«™ï¼Œ[Visual C++ç½‘ç»œé¡¹ç›®å®æˆ˜è§†é¢‘æ•™ç¨‹](https://www.bilibili.com/video/av23724274/)ï¼Œååˆ†æ„Ÿè°¢[åˆå¿ƒä¸å¿˜èª“è¨€å°å­˜](https://space.bilibili.com/22046211?spm_id_from=333.788.b_765f7570696e666f.2)çš„åˆ†äº«ã€‚
+ä½œè€…æ˜¯Jhkdiyè€å¸ˆï¼Œå¯ä»¥å‚è§ä»–çš„[jhkdiyçš„CSDNåšå®¢](https://blog.csdn.net/jhkdiy)ã€
+[jhkdiyçš„åšå®¢å›­](https://www.cnblogs.com/jhkdiy/)ã€
+[VCé»‘å®¢ç¼–ç¨‹å®æˆ˜è§†é¢‘-ç ´è§£ç½‘å§ç”µå½±ä¸‹è½½](https://www.cnblogs.com/jhkdiy/p/3363708.html)
 
-### 1¡¢HttpSourceViewerÊÇÒ»¸öÊ¹ÓÃVisual Studio2013´´½¨µÄ»ùÓÚMFCµÄ¶Ô»°¿òÓ¦ÓÃ³ÌĞò£¬·ÖÎöÒ»¸öHTMLÍøÒ³£¬»ñÈ¡HTMLÍ·ºÍÄÚÈİ£¬²¢¶Ô»ñÈ¡µÄHTMLÄÚÈİÊ¹ÓÃÕıÔò±í´ïÊ½(Boost¿â»òATL¿â)ºÍ³£¹æËÑË÷¡£
+### 1ã€HttpSourceVieweræ˜¯ä¸€ä¸ªä½¿ç”¨Visual Studio2013åˆ›å»ºçš„åŸºäºMFCçš„å¯¹è¯æ¡†åº”ç”¨ç¨‹åºï¼Œåˆ†æä¸€ä¸ªHTMLç½‘é¡µï¼Œè·å–HTMLå¤´å’Œå†…å®¹ï¼Œå¹¶å¯¹è·å–çš„HTMLå†…å®¹ä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼(Booståº“æˆ–ATLåº“)å’Œå¸¸è§„æœç´¢ã€‚
 
-### 2¡¢Ê¹ÓÃµÄ¼¼Êõ£º
-#### (1)Winhttp¿â
-WinHttpClient.h£¬¿É²Î¿¼[ThirdParty/ATLRegExp/
-](https://github.com/ccf19881030/HttpSourceViewer/tree/master/HttpSourceViewer/HttpSourceViewer/ThirdParty/ATLRegExp)Ä¿Â¼ÏÂµÄÔ´´úÂë£¬
-¶ÔWindowsµÄWinhttp¿â½øĞĞC++·â×°£¬À´Ô´ÓÚCodeProjectÍøÕ¾shichengµÄC++¿â¡£
-##### I¡¢ [A Fully Featured Windows HTTP Wrapper in C++](https://www.codeprojecµÄom/Articles/66625/A-Fully-Featured-Windows-HTTP-Wrapper-in-C) .
-##### II¡¢ [A Simple Windows HTTP Wrapper Using C++](https://www.codeproject.com/Articles/28275/A-Simple-Windows-HTTP-Wrapper-Using-C).
-#### (2)VC++ RichEdit¿Ø¼şµÄÊ¹ÓÃ
-#### (3)ÕıÔò±í´ïÊ½
-##### Ê¹ÓÃboost::xpressive¿â
-¿É²Î¼û[Boost¿â¹ÙÍø](https://www.boost.org/)
+### 2ã€ç¬¬ä¸‰æ–¹åº“ï¼š
+#### (1)Winhttpåº“
+WinHttpClient.hï¼Œå¯å‚è€ƒ[ThirdParty/ATLRegExp/
+](https://github.com/ccf19881030/HttpSourceViewer/tree/master/HttpSourceViewer/HttpSourceViewer/ThirdParty/ATLRegExp)ç›®å½•ä¸‹çš„æºä»£ç ï¼Œ
+å¯¹Windowsçš„Winhttpåº“è¿›è¡ŒC++å°è£…ï¼Œæ¥æºäºCodeProjectç½‘ç«™shichengçš„C++åº“ã€‚
+##### Iã€ [A Fully Featured Windows HTTP Wrapper in C++](https://www.codeprojecçš„om/Articles/66625/A-Fully-Featured-Windows-HTTP-Wrapper-in-C) .
+##### IIã€ [A Simple Windows HTTP Wrapper Using C++](https://www.codeproject.com/Articles/28275/A-Simple-Windows-HTTP-Wrapper-Using-C).
+#### (2)VC++ RichEditæ§ä»¶çš„ä½¿ç”¨
+#### (3)æ­£åˆ™è¡¨è¾¾å¼
+##### ä½¿ç”¨boost::xpressiveåº“
+å¯å‚è§[Booståº“å®˜ç½‘](https://www.boost.org/)
 
-##### Ê¹ÓÃATL¿â
+##### ä½¿ç”¨ATLåº“
 
-### 3¡¢HttpSourceViewer 1.0.0.1 ÂÌÉ«°æ Èí¼ş½éÉÜ£º
-HttpSourceViewerÊÇÒ»¿îÃâ·ÑµÄÍøÒ³htmlÔ´Âë²é¿´¹¤¾ß£¬Í¨¹ıÕâ¿îÈí¼şÄã¿ÉÒÔÖ±½Ó»ñÈ¡Ò»¸öÒ³ÃæµÄhtmlÔ´Âë£¬°üÀ¨htmlÍ·¼°Ò³ÃæµÄhtmlÄÚÈİ¡£HttpSourceViewer»¹Ö§³ÖÔ´ÂëÌáÈ¡£¬¿ÉÒÔ±£´æµ½±¾µØ,ÓÃÔ­Ê¼µÄHttpĞ­ÒéÇëÇóURL£¬»ñÈ¡·şÎñÆ÷·µ»ØµÄhtmlÔ´´úÂë,ÓÃ»§¿ÉÒÔÔÚhtmlÔ´´úÂëÖĞËÑË÷×Ô¼º¸ĞĞËÈ¤µÄĞÅÏ¢¡£
-#### (1)¡¢HttpSourceViewer 1.0.0.1 ÂÌÉ«°æÏÂÔØ
-[HttpSourceViewer CSDNÏÂÔØ](https://download.csdn.net/download/nmgwddj/9474236)
-[Ì«Æ½ÑóÏÂÔØ](https://dl.pconline.com.cn/download/2309623.html)
-[Î÷Î÷Èí¼şÔ°ÏÂÔØ](https://www.cr173.com/soft/748168.html)
+#### (4) EasySize - Dialog resizing in no time!
+        [EasySize](https://www.codeproject.com/Articles/1657/EasySize-Dialog-resizing-in-no-time)
+        ä½¿ç”¨å°‘é‡å‡ ä¸ªå®åœ¨å¯è°ƒæ•´å¤§å°çš„å¯¹è¯æ¡†æˆ–å±æ€§é¡µä¸­å®šä½æ§ä»¶çš„ç®€å•æ–¹æ³•
+### 3ã€HttpSourceViewer 1.0.0.1 ç»¿è‰²ç‰ˆ è½¯ä»¶ä»‹ç»ï¼š
+HttpSourceVieweræ˜¯ä¸€æ¬¾å…è´¹çš„ç½‘é¡µhtmlæºç æŸ¥çœ‹å·¥å…·ï¼Œé€šè¿‡è¿™æ¬¾è½¯ä»¶ä½ å¯ä»¥ç›´æ¥è·å–ä¸€ä¸ªé¡µé¢çš„htmlæºç ï¼ŒåŒ…æ‹¬htmlå¤´åŠé¡µé¢çš„htmlå†…å®¹ã€‚HttpSourceViewerè¿˜æ”¯æŒæºç æå–ï¼Œå¯ä»¥ä¿å­˜åˆ°æœ¬åœ°,ç”¨åŸå§‹çš„Httpåè®®è¯·æ±‚URLï¼Œè·å–æœåŠ¡å™¨è¿”å›çš„htmlæºä»£ç ,ç”¨æˆ·å¯ä»¥åœ¨htmlæºä»£ç ä¸­æœç´¢è‡ªå·±æ„Ÿå…´è¶£çš„ä¿¡æ¯ã€‚
+#### (1)ã€HttpSourceViewer 1.0.0.1 ç»¿è‰²ç‰ˆä¸‹è½½
+[HttpSourceViewer CSDNä¸‹è½½](https://download.csdn.net/download/nmgwddj/9474236)
+[å¤ªå¹³æ´‹ä¸‹è½½](https://dl.pconline.com.cn/download/2309623.html)
+[è¥¿è¥¿è½¯ä»¶å›­ä¸‹è½½](https://www.cr173.com/soft/748168.html)
 
-#### £¨2£©¡¢¹¦ÄÜ½éÉÜ£º
-1£ºÈ«ÂÌÉ«£¬µ¥ÎÄ¼ş£¬ÎŞĞè°²×°£¬½âÑ¹¼´¿ÉÔËĞĞ¡£
-2£ºÖ§³ÖÕıÔò±í´ïÊ½ËÑË÷htmlÄÚÈİ¡£
-3£ºÖ§³ÖÊ¹ÓÃBoost¿âµÄÕıÔò±í´ïÊ½Óï·¨£¬ATLÕıÔò±í´ïÊ½Óï·¨¡£
-4£ºÊ¹ÓÃÕıÔò±í´ïÊ½ËÑË÷ÄÚÈİºó£¬¿ÉÖ±½ÓÌáÈ¡ËÑË÷ÄÚÈİ¡£
-5£ºÖ±½Óµ÷ÓÃÑ¸À×½øĞĞÏÂÔØ£¬Ò»²½µ½Î»¡£
+#### ï¼ˆ2ï¼‰ã€åŠŸèƒ½ä»‹ç»ï¼š
+1ï¼šå…¨ç»¿è‰²ï¼Œå•æ–‡ä»¶ï¼Œæ— éœ€å®‰è£…ï¼Œè§£å‹å³å¯è¿è¡Œã€‚
+2ï¼šæ”¯æŒæ­£åˆ™è¡¨è¾¾å¼æœç´¢htmlå†…å®¹ã€‚
+3ï¼šæ”¯æŒä½¿ç”¨Booståº“çš„æ­£åˆ™è¡¨è¾¾å¼è¯­æ³•ï¼ŒATLæ­£åˆ™è¡¨è¾¾å¼è¯­æ³•ã€‚
+4ï¼šä½¿ç”¨æ­£åˆ™è¡¨è¾¾å¼æœç´¢å†…å®¹åï¼Œå¯ç›´æ¥æå–æœç´¢å†…å®¹ã€‚
+5ï¼šç›´æ¥è°ƒç”¨è¿…é›·è¿›è¡Œä¸‹è½½ï¼Œä¸€æ­¥åˆ°ä½ã€‚
 
-#### (3)¡¢ÊÓÆµ½éÉÜ£º
-Ïà¹ØÊÓÆµ¼ûBiliBilÊÓÆµÍøÕ¾£¬[Visual C++ÍøÂçÏîÄ¿ÊµÕ½ÊÓÆµ½Ì³Ì](https://www.bilibili.com/video/av23724274/)¡£
+#### (3)ã€è§†é¢‘ä»‹ç»ï¼š
+ç›¸å…³è§†é¢‘è§BiliBilè§†é¢‘ç½‘ç«™ï¼Œ[Visual C++ç½‘ç»œé¡¹ç›®å®æˆ˜è§†é¢‘æ•™ç¨‹](https://www.bilibili.com/video/av23724274/)ã€‚
 
 
 
