@@ -9,7 +9,6 @@
 //#include <boost/regex.hpp>
 #include "CRegExpContext.h"
 
-#include "HttpSourceViewerDlg.h"
 
 // CTabHtmlBody 对话框
 
@@ -45,7 +44,15 @@ BEGIN_MESSAGE_MAP(CTabHtmlBody, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_COPY_HTML_BODY, &CTabHtmlBody::OnBnClickedButtonCopyHtmlBody)
 	ON_BN_CLICKED(IDC_BUTTON_SEARCH_TEXT, &CTabHtmlBody::OnBnClickedButtonSearchText)
 	ON_BN_CLICKED(IDC_BUTTON_GET_MATCH, &CTabHtmlBody::OnBnClickedButtonGetMatch)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
+
+BEGIN_EASYSIZE_MAP(CTabHtmlBody)
+	EASYSIZE(IDC_EDIT_SEARCH_TEXT, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_BUTTON_SEARCH_TEXT, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_BUTTON_GET_MATCH, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_RICHEDIT2_HTML_BODY, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+END_EASYSIZE_MAP
 
 
 // CTabHtmlBody 消息处理程序
@@ -82,6 +89,7 @@ BOOL CTabHtmlBody::OnInitDialog()
 	// 设置新的窗口地址，g_lpEditProc的内置窗口处理地址
 	g_lpEditProc = (WNDPROC)::SetWindowLong(g_editHwnd, GWL_WNDPROC, (LONG)&CTabHtmlBody::SubEditProc);
 
+	INIT_EASYSIZE;
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常:  OCX 属性页应返回 FALSE
 }
@@ -339,4 +347,13 @@ void CTabHtmlBody::GetMatchRegExp()
 	// TODO: 在此处添加实现代码.
 	// 向主对话框发送消息，让其获取匹配的内容
 	AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_MAIN_GETMATCH, 0);
+}
+
+
+void CTabHtmlBody::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: 在此处添加消息处理程序代码
+	UPDATE_EASYSIZE;
 }

@@ -7,6 +7,7 @@
 class CTabHtmlHead : public CDialog
 {
 	DECLARE_DYNAMIC(CTabHtmlHead)
+	DECLARE_EASYSIZE
 
 public:
 	CTabHtmlHead(CWnd* pParent = NULL);   // 标准构造函数
@@ -23,4 +24,7 @@ public:
 	CEdit m_htmlHeadEdit;
 	afx_msg void OnBnClickedButtonClearHtmlHead();
 	afx_msg void OnClickedButtonCopyHtmlHead();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+//	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+	virtual BOOL OnInitDialog();
 };

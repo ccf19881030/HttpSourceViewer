@@ -72,7 +72,23 @@ BEGIN_MESSAGE_MAP(CHttpSourceViewerDlg, CDialogEx)
 ON_NOTIFY(TCN_SELCHANGE, IDC_TAB_MAIN, &CHttpSourceViewerDlg::OnTcnSelchangeTabMain)
 ON_BN_CLICKED(ID_BUTTON_GO, &CHttpSourceViewerDlg::OnBnClickedButtonGo)
 ON_COMMAND(ID_MAIN_GETMATCH, &CHttpSourceViewerDlg::OnMainGetmatch)
+ON_WM_SIZE()
+ON_WM_SIZING()
 END_MESSAGE_MAP()
+
+BEGIN_EASYSIZE_MAP(CHttpSourceViewerDlg)
+	EASYSIZE(IDC_FRAME_URL, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_EDIT_URL, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(IDC_PROGRESS_URL, ES_BORDER, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+
+
+	EASYSIZE(ID_BUTTON_GO, ES_KEEPSIZE, ES_BORDER,ES_BORDER, ES_KEEPSIZE, 0)
+	EASYSIZE(ID_BUTTON_STOP, ES_KEEPSIZE, ES_BORDER, ES_BORDER, ES_KEEPSIZE, 0)
+
+
+	EASYSIZE(IDC_FRAME_RESULT, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+	EASYSIZE(IDC_TAB_MAIN, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+END_EASYSIZE_MAP
 
 
 // CHttpSourceViewerDlg 消息处理程序
@@ -110,6 +126,8 @@ BOOL CHttpSourceViewerDlg::OnInitDialog()
 	InitTabControl();
 	m_urlEdit.SetWindowTextW(TEXT("http://www.5566.net"));
 	m_htmlReqProgress.SetRange(0, 100);
+
+	INIT_EASYSIZE;
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -312,4 +330,23 @@ void CHttpSourceViewerDlg::OnMainGetmatch()
 		*/
 		m_tabHtmlGet.m_htmlGetEdit.SetWindowTextW(temp);
 	}
+}
+
+
+void CHttpSourceViewerDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: 在此处添加消息处理程序代码
+	UPDATE_EASYSIZE;
+	//MoveSubTab();  // 此处有问题，需要修改
+}
+
+
+void CHttpSourceViewerDlg::OnSizing(UINT fwSide, LPRECT pRect)
+{
+	CDialogEx::OnSizing(fwSide, pRect);
+
+	// TODO: 在此处添加消息处理程序代码
+	//EASYSIZE_MINSIZE(280, 250, fwSide, pRect);
 }

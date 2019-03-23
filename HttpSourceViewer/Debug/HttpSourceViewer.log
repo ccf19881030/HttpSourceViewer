@@ -1,5 +1,4 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppClean.targets(76,5): warning : 对路径“f:\softdevelop\cplus\vcproject2013\httpsourceviewer\debug\httpsourceviewer.exe”的访问被拒绝。
-  stdafx.cpp
+﻿  stdafx.cpp
   CRegExpATL.cpp
   CRegExpContext.cpp
   HttpSourceViewer.cpp

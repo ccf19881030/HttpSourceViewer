@@ -22,7 +22,8 @@
 
 #include <afxdisp.h>        // MFC 自动化类
 
-
+#include "ThirdParty/EasySize.h"  // 加入EasySize库的头文件
+// EasySize库源代码地址：https://www.codeproject.com/Articles/1657/EasySize-Dialog-resizing-in-no-time
 
 #ifndef _AFX_NO_OLE_SUPPORT
 #include <afxdtctl.h>           // MFC 对 Internet Explorer 4 公共控件的支持

@@ -13,6 +13,7 @@
 // CHttpSourceViewerDlg 对话框
 class CHttpSourceViewerDlg : public CDialogEx
 {
+DECLARE_EASYSIZE
 // 构造
 public:
 	CHttpSourceViewerDlg(CWnd* pParent = NULL);	// 标准构造函数
@@ -59,4 +60,8 @@ public:
 	static bool HtmlRequestProgress(double progress);
 	static CHttpSourceViewerDlg* m_pThis;
 	afx_msg void OnMainGetmatch();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
+	// 是否是第一次将每个Tab页面移动到合适位置
+	bool m_isFirstTime;
 };

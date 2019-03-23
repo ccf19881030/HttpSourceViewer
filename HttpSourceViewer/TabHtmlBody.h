@@ -13,6 +13,7 @@ using std::vector;
 class CTabHtmlBody : public CDialogEx
 {
 	DECLARE_DYNAMIC(CTabHtmlBody)
+	DECLARE_EASYSIZE
 
 public:
 	CTabHtmlBody(CWnd* pParent = NULL);   // 标准构造函数
@@ -58,4 +59,5 @@ public:
 	afx_msg void OnBnClickedButtonGetMatch();
 	// 提取搜索到的内容
 	void GetMatchRegExp();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };

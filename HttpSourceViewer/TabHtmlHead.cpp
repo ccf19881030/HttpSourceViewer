@@ -11,6 +11,7 @@
 
 IMPLEMENT_DYNAMIC(CTabHtmlHead, CDialog)
 
+
 CTabHtmlHead::CTabHtmlHead(CWnd* pParent /*=NULL*/)
 	: CDialog(CTabHtmlHead::IDD, pParent)
 {
@@ -31,7 +32,12 @@ void CTabHtmlHead::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CTabHtmlHead, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR_HTML_HEAD, &CTabHtmlHead::OnBnClickedButtonClearHtmlHead)
 	ON_BN_CLICKED(IDC_BUTTON_COPY_HTML_HEAD, &CTabHtmlHead::OnClickedButtonCopyHtmlHead)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
+
+BEGIN_EASYSIZE_MAP(CTabHtmlHead)
+	EASYSIZE(IDC_EDIT_HTML_HEAD, ES_BORDER, ES_BORDER, ES_BORDER, ES_BORDER, 0)
+END_EASYSIZE_MAP
 
 
 // CTabHtmlHead 消息处理程序
@@ -55,4 +61,26 @@ void CTabHtmlHead::OnClickedButtonCopyHtmlHead()
 	CFont fnt;
 	fnt.CreatePointFont(100, TEXT("黑体"));
 	m_htmlHeadEdit.SetFont(&fnt);
+}
+
+
+void CTabHtmlHead::OnSize(UINT nType, int cx, int cy)
+{
+	CDialog::OnSize(nType, cx, cy);
+
+	// TODO: 在此处添加消息处理程序代码
+	UPDATE_EASYSIZE;
+}
+
+
+
+BOOL CTabHtmlHead::OnInitDialog()
+{
+	CDialog::OnInitDialog();
+
+	// TODO:  在此添加额外的初始化
+	INIT_EASYSIZE;
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // 异常: OCX 属性页应返回 FALSE
 }
