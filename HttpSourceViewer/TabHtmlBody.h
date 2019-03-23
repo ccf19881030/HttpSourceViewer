@@ -60,4 +60,5 @@ public:
 	// 提取搜索到的内容
 	void GetMatchRegExp();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnBnClickedButtonSaveHtmlBody();
 };

@@ -7,6 +7,8 @@
 #include "HttpSourceViewerDlg.h"
 #include "afxdialogex.h"
 
+#include "XLDownloader.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -74,6 +76,7 @@ ON_BN_CLICKED(ID_BUTTON_GO, &CHttpSourceViewerDlg::OnBnClickedButtonGo)
 ON_COMMAND(ID_MAIN_GETMATCH, &CHttpSourceViewerDlg::OnMainGetmatch)
 ON_WM_SIZE()
 ON_WM_SIZING()
+ON_COMMAND(ID_MAIN_DOWNLOAD, &CHttpSourceViewerDlg::OnMainDownload)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CHttpSourceViewerDlg)
@@ -349,4 +352,28 @@ void CHttpSourceViewerDlg::OnSizing(UINT fwSide, LPRECT pRect)
 
 	// TODO: 在此处添加消息处理程序代码
 	//EASYSIZE_MINSIZE(280, 250, fwSide, pRect);
+}
+
+
+void CHttpSourceViewerDlg::OnMainDownload()
+{
+	// TODO: 在此添加命令处理程序代码
+
+	// 
+	XLDownloader xlDownload;
+
+	LONG taskId = 0;
+	// 遍历获取正则表达式或者一般搜索匹配的数组，分别下载
+	for (auto it = m_tabHtmlBody.m_vecMatch.begin(); it != m_tabHtmlBody.m_vecMatch.end(); ++it, ++taskId)
+	{
+		CString downLoadUrl = it->c_str();
+		downLoadUrl += L"\n";
+		// 创建下载任务
+		LONG result = xlDownload.CreateTaskByThunder(TEXT("d:\\"),
+			downLoadUrl.GetBuffer(),TEXT(""), taskId);
+		if (result != 0)
+		{
+			//AfxMessageBox(L"下载失败！");
+		}
+	}
 }

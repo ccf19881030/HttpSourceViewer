@@ -6,6 +6,7 @@
 #include "TabHtmlHead.h"
 #include "afxdialogex.h"
 
+#include "CFileProcess.h"
 
 // CTabHtmlHead 对话框
 
@@ -33,6 +34,7 @@ BEGIN_MESSAGE_MAP(CTabHtmlHead, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_CLEAR_HTML_HEAD, &CTabHtmlHead::OnBnClickedButtonClearHtmlHead)
 	ON_BN_CLICKED(IDC_BUTTON_COPY_HTML_HEAD, &CTabHtmlHead::OnClickedButtonCopyHtmlHead)
 	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_BUTTON_SAVEA_HTML_HEAD, &CTabHtmlHead::OnBnClickedButtonSaveaHtmlHead)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CTabHtmlHead)
@@ -83,4 +85,15 @@ BOOL CTabHtmlHead::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // 异常: OCX 属性页应返回 FALSE
+}
+
+
+void CTabHtmlHead::OnBnClickedButtonSaveaHtmlHead()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CString strContent;
+	m_htmlHeadEdit.GetWindowTextW(strContent);
+
+	CFileProcess::SaveFile(strContent);
+
 }

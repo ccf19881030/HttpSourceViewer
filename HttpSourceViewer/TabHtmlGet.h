@@ -26,4 +26,6 @@ public:
 	afx_msg void OnBnClickedButtonCopyHtmlBody();
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnBnClickedButtonSaveHtmlGet();
+	afx_msg void OnBnClickedButtonOpenDownload();
 };

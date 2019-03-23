@@ -8,7 +8,7 @@
 #include "TabHtmlHead.h"
 #include "TabHtmlBody.h"
 #include "TabHtmlGet.h"
-#include "ThirdParty/ATLRegExp/WinHttpClient.h"
+#include "ThirdParty/ATLRegExp/WinHttpClient.h"    // http连接的包装类
 
 // CHttpSourceViewerDlg 对话框
 class CHttpSourceViewerDlg : public CDialogEx
@@ -36,7 +36,6 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButton1();
 	CEdit m_urlEdit;
 	afx_msg void OnBnClickedButtonPaste();
 	afx_msg void OnBnClickedButtonClear();
@@ -62,6 +61,6 @@ public:
 	afx_msg void OnMainGetmatch();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
-	// 是否是第一次将每个Tab页面移动到合适位置
-	bool m_isFirstTime;
+	// 调用迅雷下载
+	afx_msg void OnMainDownload();
 };

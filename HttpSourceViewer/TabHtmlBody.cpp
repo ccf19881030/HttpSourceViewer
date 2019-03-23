@@ -8,6 +8,7 @@
 #include <iostream>
 //#include <boost/regex.hpp>
 #include "CRegExpContext.h"
+#include "CFileProcess.h"
 
 
 // CTabHtmlBody 对话框
@@ -45,6 +46,7 @@ BEGIN_MESSAGE_MAP(CTabHtmlBody, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON_SEARCH_TEXT, &CTabHtmlBody::OnBnClickedButtonSearchText)
 	ON_BN_CLICKED(IDC_BUTTON_GET_MATCH, &CTabHtmlBody::OnBnClickedButtonGetMatch)
 	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_BUTTON_SAVE_HTML_BoDY, &CTabHtmlBody::OnBnClickedButtonSaveHtmlBody)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CTabHtmlBody)
@@ -356,4 +358,14 @@ void CTabHtmlBody::OnSize(UINT nType, int cx, int cy)
 
 	// TODO: 在此处添加消息处理程序代码
 	UPDATE_EASYSIZE;
+}
+
+
+void CTabHtmlBody::OnBnClickedButtonSaveHtmlBody()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CString content;
+	m_htmlBodyEdit.GetWindowTextW(content);
+
+	CFileProcess::SaveFile(content);
 }
