@@ -54,6 +54,12 @@
     <ClInclude Include="CRegExpContext.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="CFileProcess.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="XLDownloader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HttpSourceViewer.cpp">
@@ -84,6 +90,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="CRegExpContext.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CFileProcess.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="XLDownloader.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -104,6 +104,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CFileProcess.h" />
     <ClInclude Include="CRegExpATL.h" />
     <ClInclude Include="CRegExpContext.h" />
     <ClInclude Include="HttpSourceViewer.h" />
@@ -116,8 +117,10 @@
     <ClInclude Include="TabHtmlGet.h" />
     <ClInclude Include="TabHtmlHead.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="XLDownloader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CFileProcess.cpp" />
     <ClCompile Include="CRegExpATL.cpp" />
     <ClCompile Include="CRegExpContext.cpp" />
     <ClCompile Include="HttpSourceViewer.cpp" />
@@ -131,6 +134,7 @@
     <ClCompile Include="TabHtmlBody.cpp" />
     <ClCompile Include="TabHtmlGet.cpp" />
     <ClCompile Include="TabHtmlHead.cpp" />
+    <ClCompile Include="XLDownloader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="HttpSourceViewer.rc" />
