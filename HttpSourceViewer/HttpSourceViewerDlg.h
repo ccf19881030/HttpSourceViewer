@@ -63,4 +63,7 @@ public:
 	afx_msg void OnSizing(UINT fwSide, LPRECT pRect);
 	// 调用迅雷下载
 	afx_msg void OnMainDownload();
+	// 窗口置顶checkBox对应的Button控件// 窗口置顶checkBox对应的Button控件
+	CButton m_topMostButton;
+	afx_msg void OnClickedCheckTopmostWindow();
 };

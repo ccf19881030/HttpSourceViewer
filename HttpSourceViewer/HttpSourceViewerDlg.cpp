@@ -62,6 +62,8 @@ void CHttpSourceViewerDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_URL, m_urlEdit);
 	DDX_Control(pDX, IDC_TAB_MAIN, m_mainTab);
 	DDX_Control(pDX, IDC_STATIC_HTML_REQ_PROGRESS, m_htmlReqProgress);
+	//  DDX_Control(pDX, IDC_CHECK_FLOAT_ONWINDOW, m_topMostButton);
+	DDX_Control(pDX, IDC_CHECK_TOPMOST_WINDOW, m_topMostButton);
 }
 
 BEGIN_MESSAGE_MAP(CHttpSourceViewerDlg, CDialogEx)
@@ -77,6 +79,7 @@ ON_COMMAND(ID_MAIN_GETMATCH, &CHttpSourceViewerDlg::OnMainGetmatch)
 ON_WM_SIZE()
 ON_WM_SIZING()
 ON_COMMAND(ID_MAIN_DOWNLOAD, &CHttpSourceViewerDlg::OnMainDownload)
+ON_BN_CLICKED(IDC_CHECK_TOPMOST_WINDOW, &CHttpSourceViewerDlg::OnClickedCheckTopmostWindow)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CHttpSourceViewerDlg)
@@ -226,26 +229,20 @@ void CHttpSourceViewerDlg::InitTabControl()
 // 移动每个Tab页面到合适的位置
 void CHttpSourceViewerDlg::MoveSubTab()
 {
-	static bool isFirstTime = true;
+	// 获得IDC_TAB_MAIN的客户区大小
+	CRect rectClient;
+	m_mainTab.GetClientRect(&rectClient);
+	
+	// 调整子对话框在父窗口中的位置
+	rectClient.top += 30;
+	rectClient.bottom -= 10;
+	rectClient.left += 10;
+	rectClient.right -= 10;
 
-	if (isFirstTime)
-	{
-		// 获得IDC_TAB_MAIN的客户区大小
-		CRect rectClient;
-		m_mainTab.GetClientRect(&rectClient);
-		
-		// 调整子对话框在父窗口中的位置
-		rectClient.top += 30;
-		rectClient.bottom -= 10;
-		rectClient.left += 10;
-		rectClient.right -= 10;
-
-		// 设置子对话框尺寸并移动到指定位置
-		m_tabHtmlHead.MoveWindow(&rectClient);
-		m_tabHtmlBody.MoveWindow(&rectClient);
-		m_tabHtmlGet.MoveWindow(&rectClient);
-	}
-	isFirstTime = false;
+	// 设置子对话框尺寸并移动到指定位置
+	m_tabHtmlHead.MoveWindow(&rectClient);
+	m_tabHtmlBody.MoveWindow(&rectClient);
+	m_tabHtmlGet.MoveWindow(&rectClient);
 }
 
 void CHttpSourceViewerDlg::OnTcnSelchangeTabMain(NMHDR *pNMHDR, LRESULT *pResult)
@@ -332,22 +329,26 @@ void CHttpSourceViewerDlg::OnMainGetmatch()
 	{
 		temp += (*it).c_str();
 		temp += L"\r\n";
-		// 下面的代码耦合性太高了，需要改进，可以通过从CTabHtmlBody给CHttpSourceViewerDlg主对话框发送消息来实现
-		/* CHttpSourceViewerDlg* pHttpSourceViewDlg = ((CHttpSourceViewerDlg*)AfxGetMainWnd());
-		pHttpSourceViewDlg->m_tabHtmlGet.m_htmlGetEdit.SetWindowTextW(temp);
-		*/
+
 		m_tabHtmlGet.m_htmlGetEdit.SetWindowTextW(temp);
 	}
 }
 
 
+// 注意OnSize()先于OnInitDialog()调用，isFirstTime是为了处理clientRect此时为空的问题Bug
 void CHttpSourceViewerDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
 	// TODO: 在此处添加消息处理程序代码
 	UPDATE_EASYSIZE;
-	//MoveSubTab();  // 此处有问题，需要修改
+
+	static bool isFirstTime = true;
+	if (!isFirstTime)
+	{
+		MoveSubTab();  // 第一次，不移动Tab页面
+	}
+	isFirstTime = false;
 }
 
 
@@ -380,5 +381,28 @@ void CHttpSourceViewerDlg::OnMainDownload()
 		{
 			//AfxMessageBox(L"下载失败！");
 		}
+	}
+}
+
+
+// 实现主窗口置顶
+// VC++ 判断你的窗口是否置顶TopMost：https://blog.csdn.net/weixin_34221112/article/details/85954316
+// https://www.codeproject.com/Tips/269140/How-to-determine-if-your-window-is-topmost
+void CHttpSourceViewerDlg::OnClickedCheckTopmostWindow()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	HWND hWnd = this->m_hWnd;
+	// whether if the window is topmost
+	if (::GetWindowLong(hWnd, GWL_EXSTYLE) & WS_EX_TOPMOST)
+	{
+		// The window is topmost.
+		// Revert back
+		::SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	}
+	else
+	{
+		// The window is not topmost.
+		// Make topmost
+		::SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 	}
 }
