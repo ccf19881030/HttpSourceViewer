@@ -291,6 +291,11 @@ bool CHttpSourceViewerDlg::ProcessHttpRequest()
 	CString strUrl;
 	m_urlEdit.GetWindowTextW(strUrl);
 
+	if (strUrl.Find(L"http://", 0) < 0)
+	{
+		strUrl = L"http://" + strUrl;
+	}
+
 	// 构造HTTP客户端，发起请求
 	WinHttpClient client(strUrl.GetBuffer(), &CHttpSourceViewerDlg::HtmlRequestProgress);
 	// Send http request, a GET request by default.
@@ -369,7 +374,7 @@ void CHttpSourceViewerDlg::OnMainDownload()
 		CString downLoadUrl = it->c_str();
 		downLoadUrl += L"\n";
 		// 创建下载任务
-		LONG result = xlDownload.CreateTaskByThunder(TEXT("d:\\"),
+		LONG result = xlDownload.CreateTaskByThunder(TEXT("d://xunlei_download/"),
 			downLoadUrl.GetBuffer(),TEXT(""), taskId);
 		if (result != 0)
 		{
