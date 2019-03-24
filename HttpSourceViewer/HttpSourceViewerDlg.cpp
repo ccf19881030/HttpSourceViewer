@@ -63,6 +63,8 @@ void CHttpSourceViewerDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_TAB_MAIN, m_mainTab);
 	DDX_Control(pDX, IDC_STATIC_HTML_REQ_PROGRESS, m_htmlReqProgress);
 	//  DDX_Control(pDX, IDC_CHECK_FLOAT_ONWINDOW, m_topMostButton);
+	//  DDX_Control(pDX, IDC_CHECK_TOPMOST_WINDOW, m_topMostButton);
+	DDX_Control(pDX, IDC_CHECK_FLOAT_ONWINDOW, m_floatOnWinButton);
 	DDX_Control(pDX, IDC_CHECK_TOPMOST_WINDOW, m_topMostButton);
 }
 
@@ -80,6 +82,7 @@ ON_WM_SIZE()
 ON_WM_SIZING()
 ON_COMMAND(ID_MAIN_DOWNLOAD, &CHttpSourceViewerDlg::OnMainDownload)
 ON_BN_CLICKED(IDC_CHECK_TOPMOST_WINDOW, &CHttpSourceViewerDlg::OnClickedCheckTopmostWindow)
+ON_BN_CLICKED(IDC_CHECK_FLOAT_ONWINDOW, &CHttpSourceViewerDlg::OnClickedCheckFloatOnwindow)
 END_MESSAGE_MAP()
 
 BEGIN_EASYSIZE_MAP(CHttpSourceViewerDlg)
@@ -391,18 +394,28 @@ void CHttpSourceViewerDlg::OnMainDownload()
 void CHttpSourceViewerDlg::OnClickedCheckTopmostWindow()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	int i = m_topMostButton.GetCheck();//获得checkbox的点击状态，值只有0 1 2三种状态，点击后为非0值
 	HWND hWnd = this->m_hWnd;
-	// whether if the window is topmost
-	if (::GetWindowLong(hWnd, GWL_EXSTYLE) & WS_EX_TOPMOST)
+	if ( i == 0 ) // // 按钮处于未选中状态
 	{
-		// The window is topmost.
 		// Revert back
 		::SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 	}
 	else
 	{
-		// The window is not topmost.
 		// Make topmost
 		::SetWindowPos(hWnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	}
+}
+
+// VC++玩转炫酷悬浮窗1---悬浮窗的实现:
+// https://blog.csdn.net/lincyang/article/details/38729275?utm_source=blogxgwz0
+void CHttpSourceViewerDlg::OnClickedCheckFloatOnwindow()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	int i = m_floatOnWinButton.GetCheck();//获得checkbox的点击状态，值只有0 1 2三种状态，点击后为非0值
+	if ( i == 1)   // 按钮处于选中状态
+	{
+		SendMessage(WM_SYSCOMMAND, SC_MOVE | HTCAPTION, 0);
 	}
 }

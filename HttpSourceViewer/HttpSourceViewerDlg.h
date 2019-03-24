@@ -64,6 +64,10 @@ public:
 	// 调用迅雷下载
 	afx_msg void OnMainDownload();
 	// 窗口置顶checkBox对应的Button控件// 窗口置顶checkBox对应的Button控件
-	CButton m_topMostButton;
+//	CButton m_topMostButton;
 	afx_msg void OnClickedCheckTopmostWindow();
+	// 悬浮窗口对应的控件按钮
+	CButton m_floatOnWinButton;
+	afx_msg void OnClickedCheckFloatOnwindow();
+	CButton m_topMostButton;
 };
