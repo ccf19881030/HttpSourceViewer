@@ -26,6 +26,10 @@ WinHttpClient.h，可参考[ThirdParty/ATLRegExp/
 #### (5)迅雷7应用开发在线文档
 [迅雷下载开放引擎 > 快速入门 > 2.程序实例](http://xldoc.xl7.xunlei.com/0000000026/index.html).
 
+#### (6) VC++窗口置顶的实现：
+可以参见CodeProject上的一篇文章，很简单，链接如下：
+[How-to-determine-if-your-window-is-topmost](https://www.codeproject.com/Tips/269140/How-to-determine-if-your-window-is-topmost)
+
 ### 3、HttpSourceViewer 1.0.0.1 绿色版 软件介绍：
 HttpSourceViewer是一款免费的网页html源码查看工具，通过这款软件你可以直接获取一个页面的html源码，包括html头及页面的html内容。HttpSourceViewer还支持源码提取，可以保存到本地,用原始的Http协议请求URL，获取服务器返回的html源代码,用户可以在html源代码中搜索自己感兴趣的信息。
 #### (1)、HttpSourceViewer 1.0.0.1 绿色版下载
